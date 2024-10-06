@@ -23,11 +23,11 @@ class Email {
             //Estos datos los busco en la página de mailtrap, en la parte de "integraciones" de mi inbox
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = $_ENV['EMAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = '7c2ef87ca7ca1e';
-        $mail->Password = '3230b97d0b7f41';
+        $mail->Port = $_ENV['EMAIL_PORT'];
+        $mail->Username = $_ENV['EMAIL_USER'];
+        $mail->Password = $_ENV['EMAIL_PASS'];
 
         $mail->setFrom('cuentas@salon.com'); //la cuenta de correo remitente
         $mail->addAddress('cuentas@salon.com', 'AppSalon.com');
@@ -41,7 +41,7 @@ class Email {
         $contenido = "<html>";
         $contenido .= "<p><strong>Hola " . $this->nombre . "!</strong> Has creado tu cuenta en App Salón.</p>";
         $contenido .= "<p>Solo debes confirmarla presionando el siguiente enlace:</p>";
-        $contenido .= "<p>Presiona aquí: <a href='http://localhost:3000/confirm?token="
+        $contenido .= "<p>Presiona aquí: <a href='" . $_ENV['APP_URL'] . "/confirm?token="
         . $this->token . "'>Confirmar Cuenta</a></p>";
         $contenido .= "<p>Si tu no solicitaste esta cuenta, puedes ignorar este mensaje</p>";
         $contenido .= "</html>";
@@ -59,11 +59,11 @@ class Email {
             //Estos datos los busco en la página de mailtrap, en la parte de "integraciones" de mi inbox
             $mail = new PHPMailer();
             $mail->isSMTP();
-            $mail->Host = 'sandbox.smtp.mailtrap.io';
+            $mail->Host = $_ENV['EMAIL_HOST'];
             $mail->SMTPAuth = true;
-            $mail->Port = 2525;
-            $mail->Username = '7c2ef87ca7ca1e';
-            $mail->Password = '3230b97d0b7f41';
+            $mail->Port = $_ENV['EMAIL_PORT'];
+            $mail->Username = $_ENV['EMAIL_USER'];
+            $mail->Password = $_ENV['EMAIL_PASS'];
     
             $mail->setFrom('cuentas@salon.com'); //la cuenta de correo remitente
             $mail->addAddress('cuentas@salon.com', 'AppSalon.com');
@@ -76,7 +76,7 @@ class Email {
                 // COntruimos el contenido del mail en una variable 
             $contenido = "<html>";
             $contenido .= "<p><strong>Hola " . $this->nombre . "!</strong> Has solicitado reestablecer tu contraseña.</p>";
-            $contenido .= "<p>Para hacerlo, presiona en el siguiente enlace: <a href='http://localhost:3000/recover?token="
+            $contenido .= "<p>Para hacerlo, presiona en el siguiente enlace: <a href='" . $_ENV['APP_URL'] . "/recover?token="
             . $this->token . "'>Reestablecer contraseña</a></p>";
             $contenido .= "<p>Si tu no hiciste esta solicitud, puedes ignorar este mensaje</p>";
             $contenido .= "</html>";
