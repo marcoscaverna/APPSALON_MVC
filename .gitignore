@@ -1,8 +1,6 @@
 node_modules/
 src/
 vendor/
-gulpfile.js
-package-lock.json
-package.json
-.env
+includes/.env
 Untitled-1.txt
+views/Untitled-1.txt
